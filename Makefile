@@ -1,17 +1,24 @@
 NAME		=	cub3d
 CC			=	cc
-CFLAGS		=	-Wall -Wextra -Werror
+CFLAGS		=	#-Wall -Wextra -Werror
+
 MINILBX		=	minilibx-linux/libmlx_Linux.a
 PATH_MLX	=	minilibx-linux/
+
 LIBFT		=	tools/libft/libft.a
 LIBFT_PATH	=	tools/libft
-SRC			=	main.c tools/get_next_line/get_next_line.c tools/get_next_line/get_next_line_utils.c 
+
+TOOLS		=	tools/get_next_line/get_next_line.c tools/get_next_line/get_next_line_utils.c tools/free_memory/add_to_trash.c tools/free_memory/free_trash.c tools/is.c tools/ft_error.c tools/duplicate_map.c tools/free_memory/free_map.c
+PARSING		=	pars/check_opt.c pars/read_map.c pars/check_wall.c pars/check_player.c
+
+SRC			=	main.c $(TOOLS) $(PARSING)
 SRC_O		=	$(SRC:.c=.o)
 
 all: $(NAME)
 
 $(LIBFT): 
 	@make -C $(LIBFT_PATH) > test
+	@make -C $(LIBFT_PATH) bonus > test
 	@echo libft DONE
 
 $(MINILBX):
@@ -20,7 +27,7 @@ $(MINILBX):
 
 $(NAME): $(LIBFT) $(MINILBX) $(SRC_O)
 	@echo objecte DONE
-	@$(CC) $(CFLAGS) $(SRC_O) $(MINILBX) $(LIBFT) -L$(PATH_MLX) -lmlx -lXext -lX11 -lm  -lSDL2 -lSDL2_mixer -o $(NAME)
+	@$(CC) $(CFLAGS) $(SRC_O) $(MINILBX) $(LIBFT) -L$(PATH_MLX) -lmlx -lXext -lX11 -lm  -o $(NAME)
 	@echo $(NAME) DONE
 	@rm -f test
 

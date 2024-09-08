@@ -1,28 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   duplicate_map.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ohammou- <ohammou-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/25 20:51:29 by ohammou-          #+#    #+#             */
-/*   Updated: 2024/09/07 10:47:47 by ohammou-         ###   ########.fr       */
+/*   Created: 2024/09/08 15:31:54 by ohammou-          #+#    #+#             */
+/*   Updated: 2024/09/08 15:46:01 by ohammou-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../cub3d.h"
 
-int main(int ac, char **av)
+char    **duplicate_map(char **map)
 {
-    t_data data;
+    int len;
+    int i;
+    char **map_v2;
 
-    if (ac < 2)
-        return 1;
-    check_option(av[1]);
-    data.map = read_map(av[1]);
-    // data.mlx = mlx_init();
-    // data.mlx_win = mlx_new_window(data.mlx, 1000, 1000, "window");
-    //while (1);
-    
-    return 0;
+    len = ft_strlen_blm9lob(map);
+    map_v2 = malloc((len + 1) * sizeof(char *));
+    i = 0;
+    map_v2[len] = NULL;
+    while (map[i])
+    {
+        map_v2[i] = ft_strdup(map[i]);
+        i++;
+    }
+    return (map_v2);
 }

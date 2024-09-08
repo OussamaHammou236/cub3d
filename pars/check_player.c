@@ -1,28 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   check_player.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ohammou- <ohammou-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/25 20:51:29 by ohammou-          #+#    #+#             */
-/*   Updated: 2024/09/07 10:47:47 by ohammou-         ###   ########.fr       */
+/*   Created: 2024/09/08 18:39:45 by ohammou-          #+#    #+#             */
+/*   Updated: 2024/09/08 18:44:14 by ohammou-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../cub3d.h"
 
-int main(int ac, char **av)
+void	check_player(char **map)
 {
-    t_data data;
+	int	i;
+	int	flag;
 
-    if (ac < 2)
-        return 1;
-    check_option(av[1]);
-    data.map = read_map(av[1]);
-    // data.mlx = mlx_init();
-    // data.mlx_win = mlx_new_window(data.mlx, 1000, 1000, "window");
-    //while (1);
-    
-    return 0;
+	flag = 0;
+	i = 0;
+	while (map[i])
+	{
+		if (ft_strchr(map[i], 'W') || ft_strchr(map[i], 'E')
+			|| ft_strchr(map[i], 'N') || ft_strchr(map[i], 'E'))
+			flag = 1;
+		i++;
+	}
+	if (!flag)
+		ft_error("no player !\n");
 }
