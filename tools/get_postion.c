@@ -1,40 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_player.c                                     :+:      :+:    :+:   */
+/*   get_postion.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ohammou- <ohammou-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/08 18:39:45 by ohammou-          #+#    #+#             */
-/*   Updated: 2024/09/10 10:47:29 by ohammou-         ###   ########.fr       */
+/*   Created: 2024/09/09 21:18:08 by ohammou-          #+#    #+#             */
+/*   Updated: 2024/09/09 21:24:07 by ohammou-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-void	check_player(char **map)
+void	get_postion(t_data *data, char **map)
 {
 	int	i;
-	int	flag;
-	int j;
+	int	j;
 
-	flag = 0;
-	i = 0;
-	while (map[i])
+	j = 0;
+	while (map[j])
 	{
-		j = 0;
-		while (map[i][j])
+		i = 0;
+		while (map[j][i])
 		{
-			if ((map[i][j] == 'E' || map[i][j] == 'W' || map[i][j] == 'N'
-				|| map[i][j] == 'S') && flag == 1)
-				ft_error("multiple player\n");
-			else if (map[i][j] == 'E' || map[i][j] == 'W' || map[i][j] == 'N'
-				|| map[i][j] == 'S')
-				flag = 1;
-			j++;
+		   if (map[j][i] == 'N' || map[j][i] == 'S'
+			|| map[j][i] == 'E' || map[j][i] == 'W')
+			{
+				data->x = i;
+				data->y = j;
+				return ;
+			}
+			i++;
 		}
-		i++;
+		j++;
 	}
-	if (!flag)
-		ft_error("no player !\n");
 }

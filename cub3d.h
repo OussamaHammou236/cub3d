@@ -6,7 +6,7 @@
 /*   By: ohammou- <ohammou-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 20:51:20 by ohammou-          #+#    #+#             */
-/*   Updated: 2024/09/08 18:58:07 by ohammou-         ###   ########.fr       */
+/*   Updated: 2024/09/11 10:18:20 by ohammou-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,16 +29,31 @@ typedef struct s_map
 	int  flag;
 }	t_map;
 
+typedef struct	s_img {
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+}				t_img;
+
 typedef struct s_data
 {
-	void	*mlx;
-	void	*mlx_win;
-	int		x;
-	int		y;
-	int		i;
-	int		j;
-	int		fd;
-	t_map	map;
+	void			*mlx;
+	void			*mlx_win;
+	int				x;
+	int				y;
+	int				len_x;
+	int				len_y;
+	int				i;
+	int				j;
+	int				fd;
+	int				is_drawing;
+	unsigned int	color_wall;
+	unsigned int	color;
+	unsigned int	color_player;
+	t_map			map;
+	int				offset;
 }	t_data;
 
 
@@ -57,6 +72,17 @@ char	**duplicate_map(char **map);
 int		ft_strlen_blm9lob(char **map);
 void    free_map(char **map);
 void	check_player(char **map);
-t_data	*data_global(t_data *data, int fg);
+t_data	*data_global();
+void	get_postion(t_data *data, char **map);
+void	flodfile(char **map, int i, int j);
+void	check_floodfile(char **map);
 
+// -----------------------------------
+
+void	main_of_drawing(t_data *data);
+int 	mouse(int botton,int key, int y, void *par);
+int		esc(int key, void *param);
+int		krwa();
+void	open_the_window(t_data *data);
+void	drawing(t_data *data);
 #endif
