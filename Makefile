@@ -10,7 +10,7 @@ LIBFT_PATH	=	tools/libft
 
 TOOLS		=	tools/get_next_line/get_next_line.c tools/get_next_line/get_next_line_utils.c tools/free_memory/add_to_trash.c tools/free_memory/free_trash.c tools/is.c tools/ft_error.c tools/duplicate_map.c tools/free_memory/free_map.c tools/get_or_set_struct.c tools/get_postion.c
 PARSING		=	pars/check_opt.c pars/read_map.c pars/check_wall.c pars/check_player.c pars/flodfile.c
-GAME		=	game/main.c game/draw.c game/keys.c
+GAME		=	game/main.c game/draw.c game/keys.c game/keys2.c game/imgs_functions.c
 SRC			=	main.c $(TOOLS) $(PARSING) $(GAME)
 SRC_O		=	$(SRC:.c=.o)
 

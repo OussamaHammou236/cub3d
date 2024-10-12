@@ -1,39 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   keys.c                                             :+:      :+:    :+:   */
+/*   imgs_functions.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ohammou- <ohammou-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/10 14:16:40 by ohammou-          #+#    #+#             */
-/*   Updated: 2024/10/10 20:31:40 by ohammou-         ###   ########.fr       */
+/*   Created: 2024/10/10 20:14:32 by ohammou-          #+#    #+#             */
+/*   Updated: 2024/10/10 20:29:17 by ohammou-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-int mouse(int botton,int key, int y, void *par)
+void get_data_addr(t_img *img)
 {
-    t_data *data = (t_data *)par;
-
-    printf("%d\n", botton);
-    // drawing_square(data, key, y, 10);
-    return 0;
+	img->img = mlx_new_image(data_global()->mlx,  data_global()->x_max * 60,  data_global()->y_max * 60);
+	img->addr = mlx_get_data_addr(img->img, &img->bits_per_pixel, &img->line_length, &img->endian);	
 }
 
-int esc(int key, void *param)
+void put_and_destroy_img(t_img *img)
 {
-    t_data *data = param;
-	if (key == 65307)
-    {
-        mlx_clear_window(data_global()->mlx, data_global()->mlx_win);
-		exit(0);
-    }
-	return (0);
-}
-
-int	krwa()
-{
-	exit(0);
-	return (0);
+	mlx_put_image_to_window(data_global()->mlx, data_global()->mlx_win, img->img, 0, 0);
+	mlx_destroy_image(data_global()->mlx, img->img);	
 }

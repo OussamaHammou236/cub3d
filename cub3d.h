@@ -6,7 +6,7 @@
 /*   By: ohammou- <ohammou-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 20:51:20 by ohammou-          #+#    #+#             */
-/*   Updated: 2024/09/11 10:18:20 by ohammou-         ###   ########.fr       */
+/*   Updated: 2024/10/10 20:20:00 by ohammou-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ typedef struct s_data
 	int				y;
 	int				len_x;
 	int				len_y;
+	int				x_max;
+	int				y_max;
 	int				i;
 	int				j;
 	int				fd;
@@ -79,10 +81,14 @@ void	check_floodfile(char **map);
 
 // -----------------------------------
 
-void	main_of_drawing(t_data *data);
+void	main_of_drawing();
 int 	mouse(int botton,int key, int y, void *par);
 int		esc(int key, void *param);
 int		krwa();
-void	open_the_window(t_data *data);
-void	drawing(t_data *data);
+void	open_the_window();
+int 	drawing();
+int		move(int key, void *parm);
+void	get_data_addr(t_img *img);
+void 	put_and_destroy_img(t_img *img);
+
 #endif

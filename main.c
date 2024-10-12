@@ -6,7 +6,7 @@
 /*   By: ohammou- <ohammou-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 20:51:29 by ohammou-          #+#    #+#             */
-/*   Updated: 2024/09/10 16:47:22 by ohammou-         ###   ########.fr       */
+/*   Updated: 2024/10/10 20:20:15 by ohammou-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,17 +30,14 @@ int    get_x(char **map)
 
 int main(int ac, char **av)
 {
-    t_data data;
-
     if (ac < 2)
         return 1;
     check_option(av[1]);
-    data.map = read_map(av[1]);
-    data.y = ft_strlen_blm9lob(data.map.map);
-    data.x = get_x(data.map.map);
-
-    main_of_drawing(&data);
-    mlx_loop(data.mlx);
+    data_global()->map = read_map(av[1]);
+    data_global()->y_max = ft_strlen_blm9lob(data_global()->map.map);
+    data_global()->x_max = get_x(data_global()->map.map);
+    main_of_drawing();
+    mlx_loop(data_global()->mlx);
     
     return 0;
 }
